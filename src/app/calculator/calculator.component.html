@@ -1,0 +1,28 @@
+<div class="row align-items-center">
+    <div class="col-4">
+
+        <div class="mb-3">
+            <input [(ngModel)]="input1" type="number" class="form-control" id="input1" aria-describedby="input-1">
+        </div>
+        <div class="mb-3 text-align center">
+            <div id="mathSymbol">{{[mathSymbol]}}</div>
+        </div>
+        <div class="mb-3" >
+            <input [(ngModel)]="input2" type="number" class="form-control" id="input2" aria-describedby="input-2">
+        </div>
+        <div class="mb-3" >
+            <label>To the Power of</label>
+            <input [(ngModel)]="input3" type="number" class="form-control" id="input3" aria-describedby="input-3">
+        </div>
+    </div>
+    <div class="col-8"> 
+        <ul>
+            <li><button (click)="addition()" class="btn btn-primary mx-2">Add</button></li>
+            <li><button (click)="subtraction()" class="btn btn-primary mx-2">Subtract</button></li>
+            <li><button (click)="multiplication()" class="btn btn-primary mx-2">Multiply</button></li>
+            <li><button (click)="divide()" class="btn btn-primary mx-2">Divide</button></li>
+            <li><button (click)="changeVariables()" class="btn btn-primary mx-2">Swap Numbers</button></li>
+        </ul>
+    </div>
+</div>
+<div id="answer">{{answer}}</div>
