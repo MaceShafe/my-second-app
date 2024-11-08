@@ -1,0 +1,34 @@
+<div class="m-3" style="display: inline-block;">
+    @for (i of accountsService.users; track i) {
+        <button style="display:block;" class="btn btn-primary m-2" (click)="accountsService.onSelectUser($index)">
+            <img style="width: 20px;" src = "{{ accountsService.imagePath($index) }}"/>
+            <span>{{ accountsService.users[$index].name }}</span>
+        </button>
+        <a (click)="accountsService.delUser($index)">del</a><br>
+        <a (click)="accountsService.addUser($index)">add</a>
+    }    
+</div>
+
+<div class="m-3" style="display: inline-block; vertical-align:top;" >
+    @if (!accountsService.selectedUser) {
+        Blank
+    } @else {
+        <div>
+            <h6>{{accountsService.selectedUser.id}}</h6>
+            <img src="{{accountsService.imagePath(accountsService.selectedUserIndex)}}" height="150" width="150">
+            <br> <h2>{{accountsService.selectedUser.name}}</h2>
+
+            <!--edit area-->
+            <label>user ID: </label>
+            <input type="text" ng-model="user_id" value="{{accountsService.selectedUser.id}}"> 
+            <br>
+            <label>user Name: </label>
+            <input type="text" ng-model="user_name" value ="{{accountsService.selectedUser.name}}">
+            <br>
+            <label>User Icon:: </label>
+            <input type="text" ng-model="user_icon" value ="{{accountsService.selectedUser.image}}">
+            
+            <button style="display:block;" class="btn btn-primary m-2" (click)="accountsService.editUser($index)">Edit User</button>
+        </div>
+    }
+</div>
