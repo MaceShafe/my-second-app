@@ -1,34 +1,54 @@
 <div class="m-3" style="display: inline-block;">
+    <a class="btn btn-secondary m-2" (click)="accountsService.addUser()">add</a>
     @for (i of accountsService.users; track i) {
-        <button style="display:block;" class="btn btn-primary m-2" (click)="accountsService.onSelectUser($index)">
-            <img style="width: 20px;" src = "{{ accountsService.imagePath($index) }}"/>
-            <span>{{ accountsService.users[$index].name }}</span>
-        </button>
-        <a (click)="accountsService.delUser($index)">del</a><br>
-        <a (click)="accountsService.addUser($index)">add</a>
-    }    
+    <button style="display:block;" class="btn btn-primary m-2" (click)="accountsService.onSelectUser($index)">
+        <img style="width: 20px;" src="{{ accountsService.imagePath($index) }}" />
+        <span>{{ accountsService.users[$index].name }}</span>
+    </button>
+    <a class="btn btn-warning m-2" (click)="accountsService.delUser($index)">Delete</a><br>
+    }
+    
+
 </div>
 
-<div class="m-3" style="display: inline-block; vertical-align:top;" >
+<div class="m-3" style="display: inline-block; vertical-align:top;">
     @if (!accountsService.selectedUser) {
-        Blank
+    Blank
     } @else {
-        <div>
-            <h6>{{accountsService.selectedUser.id}}</h6>
-            <img src="{{accountsService.imagePath(accountsService.selectedUserIndex)}}" height="150" width="150">
-            <br> <h2>{{accountsService.selectedUser.name}}</h2>
+    <div>
+        <h6>{{accountsService.selectedUser.id}}</h6>
+        <img src="{{accountsService.imagePath(accountsService.selectedUserIndex)}}" height="150" width="150">
+        <br>
+        <h2>{{accountsService.selectedUser.name}}</h2>
 
-            <!--edit area-->
+        <!--edit area-->
+            <h4>edit user info:</h4>
+        <div>
             <label>user ID: </label>
-            <input type="text" ng-model="user_id" value="{{accountsService.selectedUser.id}}"> 
+            <input mdbInput 
+            type="text" 
+            value="{{accountsService.selectedUser.id}}"
+            [(ngModel)]="accountsService.selectedUser.id" 
+            (change)="updateUserID($index,$event)"
+            class="text-secondary form-control form-control-sm w-25 d-inline me-1 my-1">
+
             <br>
             <label>user Name: </label>
-            <input type="text" ng-model="user_name" value ="{{accountsService.selectedUser.name}}">
+            <input mdbInput 
+            type="text" 
+            value="{{accountsService.selectedUser.name}}"
+            [(ngModel)]="accountsService.selectedUser.name" 
+            (change)="updateUserName($index,$event)"
+            class="text-secondary form-control form-control-sm w-25 d-inline me-1 my-1">
             <br>
             <label>User Icon:: </label>
-            <input type="text" ng-model="user_icon" value ="{{accountsService.selectedUser.image}}">
-            
-            <button style="display:block;" class="btn btn-primary m-2" (click)="accountsService.editUser($index)">Edit User</button>
+            <input mdbInput 
+            type="text" 
+            value="{{accountsService.selectedUser.image}}"
+            [(ngModel)]="accountsService.selectedUser.image" 
+            (change)="updateUserIcon($index,$event)"
+            class="text-secondary form-control form-control-sm w-25 d-inline me-1 my-1">
         </div>
+    </div>
     }
 </div>
